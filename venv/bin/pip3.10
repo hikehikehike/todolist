@@ -1,4 +1,4 @@
-#!/Users/timurtuhvatulin/Desktop/mate/todolist/venv/bin/python3.10
+#!/Users/timurtuhvatulin/Desktop/mate/todo_list/venv/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys

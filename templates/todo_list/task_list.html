@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+
+  <h1>
+    TODO list
+  <a href="{% url 'todolist:task-creation' %}" class="btn btn-primary link-to-page">Create</a>
+  </h1>
+  {% for task in task_list %}
+    <hr>
+    <p>{{ task.content }}
+    {% if task.done_or_not %}
+      <strong style="color: green">Done</strong>
+      <a href="{% url 'todolist:task-complete-undo' pk=task.pk %}" class="btn btn-primary link-to-page">Undo</a>
+      {% else %}
+        <strong style="color: red"> Not done </strong>
+      <a href="{% url 'todolist:task-complete-undo' pk=task.pk %}" class="btn btn-success link-to-page">Complete</a>
+    {% endif %}
+    </p>
+    <p>
+      Created: {{ task.datetime }}
+      {% if task.deadline %}
+        Deadline: {{ task.deadline }}
+      {% endif %}
+    </p>
+    <p>Tags:
+      {% for foo in task.tags.all %}
+      {{ foo.name }}
+      {% endfor %}
+      <a href="{% url 'todolist:task-update' pk=task.pk %}">Update</a>
+      <a href="{% url 'todolist:task-delete' pk=task.pk %}">Delete</a>
+    </p>
+
+  {% endfor %}
+
+
+{% endblock %}
